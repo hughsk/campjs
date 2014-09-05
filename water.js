@@ -16,6 +16,7 @@ var TerrainShader = Shader({
 })
 
 mat4.scale(model, model, [5, 5, 5])
+mat4.translate(model, model, [5, 0, 5])
 
 function createTerrain(gl) {
   var texture = Texture(gl, require('./textures/water'))

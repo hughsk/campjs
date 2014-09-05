@@ -31,7 +31,7 @@ var Tent = RockFactory(require('./models/tent.obj')(true, [1, 0, 0]), TentShader
 
 module.exports = createTerrain
 
-var AMPLITUDE     = 1
+var AMPLITUDE     = 1.8
 var TREE_DENSITY  = 0.22
 var ROCK_DENSITY  = 0.035
 var TENT_DENSITY  = 0.009
