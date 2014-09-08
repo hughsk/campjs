@@ -202,9 +202,12 @@ function getTriangle(arr, index) {
 }
 
 function randomPositionInTriangle(triangle) {
-  var A = triangle[0]
-  var B = triangle[1]
-  var C = triangle[2]
+  var p1 = triangle[0]
+  var p2 = triangle[1]
+  var p3 = triangle[2]
+  var A = vec3.fromValues(p1[0], p1[1], p1[2])
+  var B = vec3.fromValues(p2[0], p2[1], p2[2])
+  var C = vec3.fromValues(p3[0], p3[1], p3[2])
   var r1 = Math.random()
   var r2 = Math.random()
   vec3.scale(A, A, 1 - Math.sqrt(r1))
