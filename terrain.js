@@ -6,6 +6,7 @@ var reindex   = require('mesh-reindex')
 var normals   = require('face-normals')
 var Geometry  = require('gl-geometry')
 var mat4      = require('gl-matrix').mat4
+var vec3      = require('gl-matrix').vec3
 var fill      = require('ndarray-fill')
 var Texture   = require('gl-texture2d')
 var ndarray   = require('ndarray')
@@ -31,12 +32,12 @@ var Tent = RockFactory(require('./models/tent.obj')(true, [1, 0, 0]), TentShader
 
 module.exports = createTerrain
 
-var AMPLITUDE     = 1.8
-var TREE_DENSITY  = 0.22
+var AMPLITUDE     = 2.5
+var TREE_DENSITY  = 0.82
 var ROCK_DENSITY  = 0.035
-var TENT_DENSITY  = 0.009
+var TENT_DENSITY  = 0.02
 var SCALE = 140
-var SIZE  = 64
+var SIZE  = 8
 var HALF_SIZE = SIZE / 2
 
 var identity = mat4.create()
@@ -69,32 +70,36 @@ function createTerrain(gl) {
   shader.attributes.position.location = 0
   shader.attributes.normal.location = 1
 
-  var scaler = 2 + 7 / HALF_SIZE
   var w = mesh.map.shape[0]
-  var h = mesh.map.shape[1]
-  for (var x = 0; x < w; x++)
-  for (var y = 0; y < h; y++) {
-    var X = (x - HALF_SIZE + 0.5) * scaler
-    var Y = (y - HALF_SIZE + 0.5) * scaler
-    var Z = mesh.height(x, y) - 0.1
-    var r = Math.random()
+  var min = [].slice.call(mesh.positions, 0, 3)
+  for (var i = 0; i < mesh.positions.length; i+=9) {
+    var triangle = getTriangle(mesh.positions, i)
+    for (var k = 0; k < 20; k++) {
+      var itemPos = randomPositionInTriangle(triangle)
+      var X = itemPos[0]
+      var Y = itemPos[1]
+      var Z = itemPos[2]
 
-    if (Z < -2 && x > w/2) continue
-    if (r < TREE_DENSITY) {
-      trees.push(Tree(gl, X, Z, Y))
-      continue
-    }
 
-    r -= TREE_DENSITY
-    if (r < ROCK_DENSITY) {
-      rocks.push(Rock(gl, X, Z, Y))
-      continue
-    }
+      var r = Math.random()
+      if (X > w/2 && Z < 50 && Y < 0) continue
+      if (r < TREE_DENSITY) {
+        trees.push(Tree(gl, X, Y, Z))
+        continue
+      }
 
-    r -= ROCK_DENSITY
-    if (r < TENT_DENSITY) {
-      tents.push(Tent(gl, X, Z, Y))
-      continue
+      r -= TREE_DENSITY
+      if (r < ROCK_DENSITY) {
+        rocks.push(Rock(gl, X, Y, Z))
+        continue
+      }
+
+      r -= ROCK_DENSITY
+      if (r < TENT_DENSITY) {
+        tents.push(Tent(gl, X, Y, Z))
+        continue
+      }
+
     }
   }
 
@@ -186,4 +191,27 @@ function createMesh() {
   function getHeight(x, z) {
     return (map.get(x, z) - 0.5) * SCALE - ay
   }
+}
+
+function getPoint(arr, index) {
+  return [arr[index], arr[index + 1], arr[index + 2]]
+}
+
+function getTriangle(arr, index) {
+  return [getPoint(arr, index), getPoint(arr, index + 3), getPoint(arr, index + 6)]
+}
+
+function randomPositionInTriangle(triangle) {
+  var A = triangle[0]
+  var B = triangle[1]
+  var C = triangle[2]
+  var r1 = Math.random()
+  var r2 = Math.random()
+  vec3.scale(A, A, 1 - Math.sqrt(r1))
+  vec3.scale(B, B, Math.sqrt(r1) * (1 - r2))
+  vec3.scale(C, C, r2 * Math.sqrt(r1))
+  var result = []
+  vec3.add(result, A, B)
+  vec3.add(result, result, C)
+  return result
 }
