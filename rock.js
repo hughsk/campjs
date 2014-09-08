@@ -10,6 +10,7 @@ module.exports = function(obj, Shader) {
   return function(gl, x, y, z) {
     var model = mat4.create()
     var scale = Math.random() * 0.1 + 0.2
+    scale *= 0.7
 
     mat4.translate(model, model, [x, y, z])
     mat4.scale(model, model, [scale, scale, scale])

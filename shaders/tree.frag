@@ -13,15 +13,18 @@ uniform mat4  uModel;
 
 varying vec3 aNormal;
 
+vec3 down = vec3(0.0, -1.0, 0.0);
+
 void main() {
   float luminosity = clamp(dot(
       normalize(aNormal)
     , uLightDirection
   ), 0.0, 1.0);
 
-  // vec3 color = luminosity > uLightThreshold
-  //   ? GREEN_LIGHT
-  //   : GREEN_DARK;
+  float fogness = clamp(dot(
+      normalize(down)
+    , uLightDirection
+  ), 0.3, 1.0);
 
   vec3 colorSoft = mix(GREEN_LIGHT, GREEN_DARK, pow(luminosity, 0.5));
   vec3 color = mix(
@@ -31,7 +34,8 @@ void main() {
   );
 
   color = mix(color, colorSoft, 0.1);
-  color = mix(color, BLUE, clamp(fog(), 0.0, 1.0));
+
+  color = mix(color, BLUE, clamp(fog(fogness), 0.0, 1.0));
 
   gl_FragColor = vec4(color, 1.0);
 }

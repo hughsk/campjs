@@ -15,8 +15,9 @@ var TerrainShader = Shader({
   , transform: ['glslify-hex']
 })
 
-mat4.scale(model, model, [5, 5, 5])
-mat4.translate(model, model, [5, 0, 5])
+//mat4.scale(model, model, [100, 1, 100])
+mat4.translate(model, model, [-15, -15, 9])
+mat4.scale(model, model, [2, 1, 2])
 
 function createTerrain(gl) {
   var texture = Texture(gl, require('./textures/water'))
@@ -25,7 +26,8 @@ function createTerrain(gl) {
   var geom = Geometry(gl)
     .attr('position', mesh.positions)
     .attr('normal', mesh.normals)
-
+  global.water = model
+  global.mat4 = mat4
   shader.bind()
   shader.attributes.position.location = 0
   shader.attributes.normal.location = 1

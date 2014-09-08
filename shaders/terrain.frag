@@ -16,6 +16,8 @@ uniform sampler2D tOverlay2;
 varying vec3 aNormal;
 varying vec3 aPosition;
 
+vec3 down = vec3(0.0, -1.0, 0.0);
+
 void main() {
   float overlay = texture2D(tOverlay, fract(aPosition.xz * 0.08)).r;
   float overlay2 = texture2D(tOverlay2, fract(aPosition.xz * 0.08)).r;
@@ -24,6 +26,11 @@ void main() {
       normalize(aNormal)
     , uLightDirection
   ), 0.0, 1.0);
+
+  float fogness = clamp(dot(
+      normalize(down)
+    , uLightDirection
+  ), 0.3, 1.0);
 
   vec3 colorHard = mix(
       GREEN_DARK
@@ -41,7 +48,8 @@ void main() {
   color = overlay2 > 0.8
     ? mix(color, color * 1.045, 1.0 * (overlay2 - 0.5))
     : mix(color, color * 0.975, 1.0 * (overlay2));
-  color = mix(color, BLUE, clamp(fog(), 0.0, 1.0));
+
+  color = mix(color, BLUE, clamp(fog(fogness), 0.0, 1.0));
 
   gl_FragColor = vec4(color, 1.0);
 }

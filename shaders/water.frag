@@ -24,7 +24,7 @@ void main() {
   coord.x += sin(aPosition.z * 0.5 + uTime * 12.0) * 0.5;
 
   color = mix(color, vec3(1.0), texture2D(tWaves, fract(coord)).r * 0.2);
-  color = mix(color, BLUE, fog());
+  color = mix(color, BLUE, fog(1));
 
   gl_FragColor = vec4(color, 1.0);
 }

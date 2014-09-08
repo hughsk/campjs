@@ -15,9 +15,9 @@ var TerrainShader = Shader({
 module.exports = function(gl, x, y, z) {
   var model = mat4.create()
   var scale = Math.random() * 0.2 + 0.8
-
-  mat4.translate(model, model, [x, y, z - 0.1 * scale])
-  mat4.scale(model, model, [scale, scale, scale])
+  scale *= 0.6
+  mat4.translate(model, model, [x, y, z])
+  mat4.scale(model, model, [scale, scale * 1.5, scale * 0.1])
   mat4.rotateY(model, model, Math.random() * Math.PI * 2 * 0.2)
 
   shader = shader || TerrainShader(gl)
@@ -38,6 +38,7 @@ module.exports = function(gl, x, y, z) {
     shader.uniforms.uLightThreshold = params.lightThreshold
     shader.uniforms.uProjection = params.proj
     shader.uniforms.uView = params.view
+    shader.uniforms.uTime = params.time
   }
 
   function postrender(params) {

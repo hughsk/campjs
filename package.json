@@ -56,6 +56,8 @@
     "through": "^2.3.4",
     "uglifyify": "^2.5.0",
     "unindex-mesh": "^1.0.1",
-    "zeros": "0.0.0"
+    "zeros": "0.0.0",
+    "barycentric": "~1.0.1",
+    "basic-camera": "~1.1.0"
   }
 }

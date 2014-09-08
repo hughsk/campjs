@@ -14,11 +14,18 @@ uniform vec3  uLightDirection;
 varying vec3 aNormal;
 varying vec3 aIndex;
 
+vec3 down = vec3(0.0, -1.0, 0.0);
+
 void main() {
   float luminosity = clamp(dot(
       normalize(aNormal)
     , uLightDirection
   ), 0.0, 1.0);
+
+  float fogness = clamp(dot(
+      normalize(down)
+    , uLightDirection
+  ), 0.3, 1.0);
 
   float dark = abs(aIndex.x - 1.0) > 0.1
     ? 0.0
@@ -33,7 +40,7 @@ void main() {
       : ORANGE_DARK
   , dark);
 
-  color = mix(color, BLUE, clamp(fog(), 0.0, 1.0));
+  color = mix(color, BLUE, clamp(fog(fogness), 0.0, 1.0));
 
   gl_FragColor = vec4(color, 1.0);
 }

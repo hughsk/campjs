@@ -1,3 +1,4 @@
+"use strict"
 //
 // "Prelude"
 //
@@ -21,8 +22,8 @@ setTimeout(function() {
 //
 // Constants
 //
-var SCROLL_AMOUNT = 0.0015
-var DAY_LENGTH    = 4000
+var SCROLL_AMOUNT = 0.0025
+var DAY_LENGTH    = 8000
 var RETINA        = false
 var CONTROLLABLE  = false
 var FPS_MIN       = 52
@@ -41,9 +42,9 @@ var triangle = require('a-big-triangle')
 var mat4     = require('gl-matrix').mat4
 var vec3     = require('gl-matrix').vec3
 var quat     = require('gl-matrix').quat
-var terrain  = require('./terrain')(gl)
+var Terrain  = require('./terrain')
 var Texture  = require('gl-texture2d')
-var water    = require('./water')(gl)
+//var water    = require('./water')(gl)
 var fit      = require('canvas-fit')
 var Shader   = require('glslify')
 var FBO      = require('gl-fbo')
@@ -61,8 +62,93 @@ var camera = Camera(canvas, {
   , pan: CONTROLLABLE
 })
 
-camera.center[2] = 40
-quat.rotateX(camera.rotation, camera.rotation, -0.05)
+global.camera = camera
+
+var CAMERA_Y_START = 8
+
+var scenes = [
+  {
+    seed:{
+      amplitude: 3.5,
+      a: 255.57603543402918 + 10 * Math.random(),
+      b: 259.15527208565095 + 10 * Math.random(),
+      c: 412.29487132259004 + 10 * Math.random(),
+      d: 408.7788971224922 + 10 * Math.random()
+
+    },
+    camera: {"rotation":[-0.00803025394203903,0.9689247173185889,-0.005334424354910124,0.24716786018315728],"center":[44.27042954065837,8,41.08271098934347],"distance":284.2857761047055}
+  },
+  {
+    seed: {
+      amplitude: 3.5,
+      a: 261.2685889658734,
+      b: 259.62888073498675,
+      c: 415.78625821486406,
+      d: 416.59670781950757
+    },
+    camera: {"rotation":[0.013730556194295812,0.9725875523351319,0.06963369430354002,0.2214409029221873],"center":[46.93985236086883,8,42.28140228294069],"distance":307.8231533582704}
+  },
+  {
+    seed:{
+      amplitude: 3.5,
+      a: 255.5760354340292,
+      b: 259.15527208565095,
+      c: 412.29487132259004,
+      d: 408.7788971224922
+    },
+    camera: {"rotation":[-0.009138637508895198,0.9931606310667358,0.013170264287105589,0.11565029330793694],"center":[-11.023798441281542,8,11.913573415891733],"distance":264.795348770936}
+  },
+  {
+    seed:{
+      amplitude: 3.5,
+      a: 255.5760354340292,
+      b: 259.15527208565095,
+      c: 412.29487132259004,
+      d: 408.7788971224922
+    },
+    camera: {"rotation":[-0.021389141912916916,0.9986115661358734,0.034319235785879136,-0.03375847512789078],"center":[16.468219751724973,8,26.8639250206179],"distance":242.47268795040304}
+  },
+  {
+    seed:{
+      amplitude: 3.5,
+      a: 255.5760354340292,
+      b: 259.15527208565095,
+      c: 412.29487132259004,
+      d: 408.7788971224922
+    },
+    camera: {"rotation":[0.016619529263241433,0.985122027038742,0.039638073414947426,-0.1663947301632471],"center":[-88.27863728976808,8,69.25739084422821],"distance":271.652979382491}
+  },
+  {
+    seed:{
+      amplitude: 3.5,
+      a: 255.5760354340292,
+      b: 259.15527208565095,
+      c: 412.29487132259004,
+      d: 408.7788971224922
+    },
+    camera: {"rotation":[-0.047317392765469875,0.9942419338515545,0.060130203472256914,-0.07502266286519385],"center":[23.742700565839186,8,53.07262899779016],"distance":284.2857761047055}
+  }
+]
+
+var SCENE_INDEX = getRandomInt(1, scenes.length)
+console.log('selected scene', SCENE_INDEX)
+var scene = scenes[SCENE_INDEX]
+
+scene.seed.amplitude += Math.random() * 0.2
+scene.seed.a += Math.random() * 0.5
+scene.seed.b += Math.random() * 0.5
+scene.seed.c += Math.random() * 0.5
+scene.seed.d += Math.random() * 0.5
+
+
+var cameraPos = scene.camera
+camera.center = cameraPos.center
+camera.distance = cameraPos.distance
+camera.rotation = cameraPos.rotation
+
+var CAMERA_Y_START = cameraPos.center[1]
+
+var terrain = Terrain(gl, scene)
 
 var scales = [0.25, 0.5, 1]
 var ratio  = (RETINA && window.devicePixelRatio) || 1
@@ -122,8 +208,8 @@ var params = {
   , lightDirectionY: 0.5
   , lightDirectionZ: 0.76
   , lightDirection: new Float32Array(3)
-  , sunX: 0.8
-  , sunY: 0.58
+  , sunX: -0.0
+  , sunY: -0.0
   , lut1: 'day'
   , lut2: 'day'
   , lutT: 0
@@ -138,7 +224,7 @@ if (process.env.NODE_ENV !== 'production') {
   stats.begin()
   document.body.appendChild(stats.domElement)
 }
-
+global.gl = gl
 //
 // Render Loop
 //
@@ -160,8 +246,8 @@ function render() {
   //
   var dayTime = Date.now() / DAY_LENGTH
   var sunpos = [
-      params.sunX + Math.sin(dayTime) * 0.8
-    , params.sunY + Math.cos(dayTime) * 0.6
+      params.sunX + Math.sin(dayTime) * 1.8
+    , params.sunY + Math.cos(dayTime) * 1.2
   ]
 
   updateLUT(
@@ -179,15 +265,15 @@ function render() {
   //
   // View/Projection matrices
   //
-  camera.center[1] = window.scrollY * SCROLL_AMOUNT
+  camera.center[1] = CAMERA_Y_START + window.scrollY * SCROLL_AMOUNT
   camera.view(params.view)
   camera.tick()
 
   mat4.perspective(params.proj
-    , Math.PI / 4
+    , Math.PI / 9
     , canvas.width / canvas.height
-    , 0.1
-    , 10000
+    , 1.0
+    , 1000
   )
 
   //
@@ -201,8 +287,9 @@ function render() {
   gl.enable(gl.CULL_FACE)
 
   clear(gl)
+
   terrain(params)
-  water(params)
+  //water(params)
 
   gl.disable(gl.DEPTH_TEST)
   gl.disable(gl.CULL_FACE)
@@ -263,4 +350,8 @@ function updateLUT(t, n) {
     params.lut2 = n ? 'day' : 'day2'
     params.lutT = t - 5
   }
+}
+
+function getRandomInt(min, max) {
+  return Math.floor(Math.random() * (max - min)) + min;
 }

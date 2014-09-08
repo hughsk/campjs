@@ -32,12 +32,13 @@ var Tent = RockFactory(require('./models/tent.obj')(true, [1, 0, 0]), TentShader
 
 module.exports = createTerrain
 
-var AMPLITUDE     = 2.5
+var NUM_ITEMS     = 80
+var AMPLITUDE     = 3.5
 var TREE_DENSITY  = 0.82
 var ROCK_DENSITY  = 0.035
-var TENT_DENSITY  = 0.02
-var SCALE = 140
-var SIZE  = 8
+var TENT_DENSITY  = 0.08
+var SCALE = 400
+var SIZE  = 10
 var HALF_SIZE = SIZE / 2
 
 var identity = mat4.create()
@@ -47,18 +48,19 @@ var TerrainShader = Shader({
   , transform: ['glslify-hex']
 })
 
-function createTerrain(gl) {
+function createTerrain(gl, opts) {
+  opts = opts || {}
+
   var shader = TerrainShader(gl)
   var trees = []
   var rocks = []
   var tents = []
-  var mesh = createMesh()
+  var mesh = createMesh(opts)
   var geom = Geometry(gl)
     .attr('position', mesh.positions)
     .attr('normal', mesh.normals)
 
   var texture = Texture(gl, require('./textures/grass'))
-
   texture.minFilter = gl.LINEAR
   texture.magFilter = gl.LINEAR
 
@@ -74,7 +76,7 @@ function createTerrain(gl) {
   var min = [].slice.call(mesh.positions, 0, 3)
   for (var i = 0; i < mesh.positions.length; i+=9) {
     var triangle = getTriangle(mesh.positions, i)
-    for (var k = 0; k < 20; k++) {
+    for (var k = 0; k < NUM_ITEMS; k++) {
       var itemPos = randomPositionInTriangle(triangle)
       var X = itemPos[0]
       var Y = itemPos[1]
@@ -82,7 +84,8 @@ function createTerrain(gl) {
 
 
       var r = Math.random()
-      if (X > w/2 && Z < 50 && Y < 0) continue
+      //if (X > w/2 && Z < 50 &&) continue
+      //if ( Y < -2 ) continue
       if (r < TREE_DENSITY) {
         trees.push(Tree(gl, X, Y, Z))
         continue
@@ -126,31 +129,36 @@ function createTerrain(gl) {
     shader.uniforms.uLightThreshold = params.lightThreshold
     shader.uniforms.uProjection = params.proj
     shader.uniforms.uView = params.view
+    shader.uniforms.uTime = params.time
     shader.uniforms.uModel = identity
 
     geom.draw(gl.TRIANGLES)
-    // geom.unbind()
+    geom.unbind()
   }
 }
 
-function createMesh() {
-  var map = fill(zeros([SIZE, SIZE]), function(x, y) {
+function createMesh(opts) {
+  var SEED_A = opts.seed.a
+  var SEED_B = opts.seed.b
+  var SEED_C = opts.seed.c
+  var SEED_D = opts.seed.d
+  console.log('a: %s,\nb: %s,\nc: %s,\nd: %s\namplidtude: %s\n', SEED_A, SEED_B, SEED_C, SEED_D, opts.seed.amplitude)
+  var map = fill(zeros([SIZE * 0.7, SIZE * 1.3]), function(x, y) {
     x -= HALF_SIZE; y -= HALF_SIZE
     x /= SIZE;      y /= SIZE
 
     var h = 0
-
     h += (perlin(
-        x * 3.1 + 293.94288
-      , y * 3.1 + 12.238383
+        x * SEED_A
+      , y * SEED_B
     ) + 1) * 0.075
 
     h += (perlin(
-        x * 125.5 + 293.94288
-      , y * 125.5 + 12.238383
+        x * SEED_C
+      , y * SEED_D
     ) + 1) * 0.006125
 
-    h *= AMPLITUDE
+    h *= opts.seed.amplitude
 
     return h > 0 ? h : 0
   })
