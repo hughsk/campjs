@@ -61,6 +61,10 @@ function createTerrain(gl) {
   texture.minFilter = gl.LINEAR
   texture.magFilter = gl.LINEAR
 
+  var texture2 = Texture(gl, require('./textures/water'))
+  texture2.minFilter = gl.LINEAR
+  texture2.magFilter = gl.LINEAR
+
   shader.bind()
   shader.attributes.position.location = 0
   shader.attributes.normal.location = 1
@@ -112,6 +116,7 @@ function createTerrain(gl) {
     geom.bind(shader)
 
     shader.uniforms.tOverlay = texture.bind(0)
+    shader.uniforms.tOverlay2 = texture2.bind(1)
     shader.uniforms.uLightDirection = params.lightDirection
     shader.uniforms.uLightThreshold = params.lightThreshold
     shader.uniforms.uProjection = params.proj
