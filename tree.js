@@ -14,11 +14,11 @@ var TerrainShader = Shader({
 
 module.exports = function(gl, x, y, z) {
   var model = mat4.create()
-  var scale = Math.random() * 0.3 + 0.3
+  var scale = Math.random() * 0.2 + 0.8
 
-  mat4.translate(model, model, [x, y, z])
+  mat4.translate(model, model, [x, y, z - 0.1 * scale])
   mat4.scale(model, model, [scale, scale, scale])
-  mat4.rotateY(model, model, Math.random() * Math.PI * 2)
+  mat4.rotateY(model, model, Math.random() * Math.PI * 2 * 0.2)
 
   shader = shader || TerrainShader(gl)
   geom = geom || createGeom()
