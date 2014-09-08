@@ -105,13 +105,13 @@ function createTerrain(gl) {
     for (var i = 0; i < trees.length; i++) trees[i](params)
     trees[0].postrender(params)
 
-    rocks[0].prerender(params)
+    rocks[0] && rocks[0].prerender(params)
     for (var i = 0; i < rocks.length; i++) rocks[i](params)
-    rocks[0].postrender(params)
+    rocks[0] && rocks[0].postrender(params)
 
-    tents[0].prerender(params)
+    tents[0] && tents[0].prerender(params)
     for (var i = 0; i < tents.length; i++) tents[i](params)
-    tents[0].postrender(params)
+    tents[0] && tents[0].postrender(params)
 
     geom.bind(shader)
 
