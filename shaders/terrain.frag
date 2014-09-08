@@ -5,6 +5,7 @@ precision mediump float;
 
 #define GREEN_LIGHT     #c3dc8b
 #define GREEN_DARK      #74884e
+#define BLUE            #E0ECEF
 #define FOG_ENABLED
 
 uniform float uLightThreshold;
