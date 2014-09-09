@@ -19,7 +19,7 @@
     "array-pack-2d": "^0.1.0",
     "browserify": "5.10.0",
     "bunny": "^1.0.1",
-    "canvas-autoscale": "^1.0.1",
+    "canvas-autoscale": "^2.0.0",
     "canvas-fit": "^1.1.2",
     "canvas-orbit-camera": "0.0.1",
     "dat-gui": "^0.5.0",
