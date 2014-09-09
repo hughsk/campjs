@@ -20,8 +20,17 @@ body, html {
   transition: opacity 0.5s;
 }
 
+.bg {
+  background-image: url('background.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  margin: 0;
+  padding: 3em 0;
+}
+
 body {
-  font-family: 'Fantasque Sans Mono', 'Fira Sans OT';
+  font-family: 'Fantasque Sans Mono', 'Fira Sans OT', sans-serif;
 }
 
 #viewbox {
@@ -37,24 +46,27 @@ body {
   padding-bottom: 8em;
 }
 
+.header {
+  color: #eee;
+  text-shadow: 0 0 20px rgba(65, 64, 73, 0.45);
+  text-align: center;
+  text-transform: uppercase;
+  font-family: 'SHAKAGRAPHICS';
+  line-height: 1em;
+}
+
 .title {
   position: relative;
 }
 
 .title h1 {
   position: absolute;
-  line-height: 1em;
   margin: 0;
   padding: 0;
-  font-family: 'SHAKAGRAPHICS';
-  text-transform: uppercase;
   font-size: 7em;
-  color: #eee;
   top: 50%; left: 50%;
   transform: translate(-50%, -50%);
-  text-shadow: 0 0 20px rgba(65, 64, 73, 0.45);
   width: 100%;
-  text-align: center;
 }
 
 .tickets {
@@ -105,19 +117,25 @@ body {
   }
 }
 
-.mentor-list {
-  list-style-type: none;
+.content {
   max-width: 600px;
   margin: 0 auto;
 }
 
-.mentor-list li {
+.content-item, .mentor-list li {
   background-color: rgba(255,255,255,0.925);
-  margin: 0;
-  padding: 1.5em;
-  margin-bottom: 1em;
+  margin-bottom: 1.5em;
   border-radius: 4px;
   color: #2E2B25;
+}
+
+.mentor-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+.mentor-list li {
+  padding: 1.5em;
   font-size: 0.8rem;
 }
 
@@ -164,3 +182,26 @@ div.dg.ac {
 .cf:after { content: " "; display: table; }
 .cf:after { clear: both; }
 .cf { *zoom: 1; }
+
+#code-of-conduct .content {
+  padding: 0.2em 2em;
+}
+
+footer.content {
+  text-align: center;
+  margin: 1em auto;
+  padding: 1em 0;
+}
+
+a, a:hover {
+  color: rgb(46,43,37);
+  text-decoration: underline;
+}
+
+#videos h1{
+  text-align: center;
+  padding: 1em 0;
+}
+#videos iframe {
+  margin-bottom: 1em;
+}
