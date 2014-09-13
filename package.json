@@ -53,6 +53,7 @@
     "ndarray-fill": "^1.0.1",
     "ndpack-image": "git://github.com/hughsk/ndpack-image#fix-orientation",
     "perlin": "^1.0.0",
+    "scrollbar-width": "~1.0.7",
     "tab64": "0.0.1",
     "through": "^2.3.4",
     "uglifyify": "^2.5.0",

@@ -2,12 +2,13 @@
 // "Prelude"
 //
 var fitter = document.querySelector('[data-fit]')
+require("scrollbar-width") // this asshole makes window.SCROLLBAR_WIDTH
 
 refit()
 window.addEventListener('resize', refit, false)
 function refit() {
   if (!fitter) return
-  fitter.style.width  = window.innerWidth + 'px'
+  fitter.style.width  = (window.innerWidth - window.SCROLLBAR_WIDTH) + 'px'
   fitter.style.height = window.innerHeight + 'px'
 }
 
