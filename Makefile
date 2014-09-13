@@ -14,8 +14,7 @@ TRANSFORMS_PRD= \
 	-t glslify    \
 	-t glslify-optimize
 
-style.css: index.css
-	myth index.css style.css
+
 
 assets: clean \
 	luts/day.js luts/normal.js luts/night.js luts/sunset.js   \
@@ -42,6 +41,9 @@ disc.html:
 		uglifyjs -cm |\
 		discify >\
 		disc.html)
+
+style.css: index.css
+	myth index.css style.css
 
 ## TODO: investigate synchronous (or at least transparent
 ## and/or bulk) method of inlining and loading texture
