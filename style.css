@@ -6,20 +6,20 @@ html {
 
 @font-face {
   font-family: 'SG1212';
-  src: url("/fonts/sg12-webfont.eot");
-  src: url("/fonts/sg12-webfont.eot?#iefix") format('embedded-opentype'), url("/fonts/sg12-webfont.woff") format('woff'), url("/fonts/sg12-webfont.ttf") format('truetype'), url("/fonts/sg12-webfont.svg#SG1212") format('svg');
+  src: url("fonts/sg12-webfont.eot");
+  src: url("fonts/sg12-webfont.eot?#iefix") format('embedded-opentype'), url("fonts/sg12-webfont.woff") format('woff'), url("fonts/sg12-webfont.ttf") format('truetype'), url("fonts/sg12-webfont.svg#SG1212") format('svg');
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
   font-family: 'Fantasque Sans Mono';
-  src: url('/fonts/fantasquesansmono-regular-webfont.eot');
-  src: url('/fonts/fantasquesansmono-regular-webfont.eot?#iefix') format('embedded-opentype'),
-         url('/fonts/fantasquesansmono-regular-webfont.woff2') format('woff2'),
-         url('/fonts/fantasquesansmono-regular-webfont.woff') format('woff'),
-         url('/fonts/fantasquesansmono-regular-webfont.ttf') format('truetype'),
-         url('/fonts/fantasquesansmono-regular-webfont.svg#fantasque_sans_monoregular') format('svg');
+  src: url('fonts/fantasquesansmono-regular-webfont.eot');
+  src: url('fonts/fantasquesansmono-regular-webfont.eot?#iefix') format('embedded-opentype'),
+         url('fonts/fantasquesansmono-regular-webfont.woff2') format('woff2'),
+         url('fonts/fantasquesansmono-regular-webfont.woff') format('woff'),
+         url('fonts/fantasquesansmono-regular-webfont.ttf') format('truetype'),
+         url('fonts/fantasquesansmono-regular-webfont.svg#fantasque_sans_monoregular') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -59,7 +59,7 @@ body {
   left: 0;
   width: 100%;
   height: 100%;
-  background: #000 url('/background.jpg');
+  background: #000 url('background.jpg');
   background-size: cover;
   z-index: 1;
 }
