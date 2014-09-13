@@ -12,7 +12,8 @@
   "devDependencies": {
     "beefy": "^2.1.0",
     "browserify": "^5.10.0",
-    "glsl-range": "^1.0.0"
+    "glsl-range": "^1.0.0",
+    "myth": "~1.2.0"
   },
   "dependencies": {
     "a-big-triangle": "0.0.0",

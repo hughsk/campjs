@@ -14,6 +14,9 @@ TRANSFORMS_PRD= \
 	-t glslify    \
 	-t glslify-optimize
 
+style.css: index.css
+	myth index.css style.css
+
 assets: clean \
 	luts/day.js luts/normal.js luts/night.js luts/sunset.js   \
 	textures/water.js textures/grass.js textures/cardboard.js \
@@ -25,7 +28,7 @@ clean:
 	rm bundle.js; true
 	rm disc.html; true
 
-start: assets
+start: assets style.css
 	npm start glslify-live &
 	(beefy index.js:bundle.js --open -- $(TRANSFORMS_DEV))
 
