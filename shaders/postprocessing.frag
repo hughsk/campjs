@@ -16,6 +16,7 @@ varying vec2 vpos;
 #define GOD_DENSITY 0.005
 #define GOD_WEIGHT 0.05
 #define GOD_DECAY 0.98
+#define NOISE_AMOUNT 0.05
 
 #pragma glslify: square = require(glsl-square-frame)
 #pragma glslify: noise  = require(glsl-random)
@@ -66,7 +67,7 @@ void main() {
   // Noise :D
   color.rgb += (noise(
     gl_FragCoord.xy + fract(uTime * 100.2352)
-  ) - 0.5) * 0.08;
+  ) - 0.5) * NOISE_AMOUNT;
 
   float vamt = vignette(color.rgb, square(uScreenSize) * 0.34);
 

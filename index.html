@@ -1,8 +1,30 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>campjs</title>
+  <link rel="shortcut icon" href="favicon.ico" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <script>window["_GOOG_TRANS_EXT_VER"] = "1";</script>
+  <script>
+    // Check if a new cache is available on page load.
+    window.addEventListener('load', function(e) {
+
+    window.applicationCache.addEventListener('updateready', function(e) {
+    if (window.applicationCache.status == window.applicationCache.UPDATEREADY) {
+    // Browser downloaded a new app cache.
+    // Swap it in and reload the page to get the new hotness.
+    window.applicationCache.swapCache();
+    window.location.reload();
+    } else {
+    // Manifest didn't change. Nothing new to server.
+    }
+    }, false);
+
+    }, false);
+  </script>
+  <title>CampJS – An event for the JavaScript Community</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -12,111 +34,52 @@
   </div>
   <div id="main">
     <section class="title" data-fit>
-      <h1>CampJS IV</h1>
+      <header>
+        <h1 class="header">CampJS IV</h1>
+        <h2 class="header">Oct 31 — Nov 3 2014, Springbrook, Australia.</h2>
+      </header>
       <a class="tickets" href="https://ti.to/campjs/campjs-iv/" target="_blank">Get Tickets!</a>
     </section>
-
-    <section class="mentors">
-      <ul class="mentor-list">
-        <li>
-          <figure class="cf">
-            <img class="mentor-thumb" src="https://avatars0.githubusercontent.com/u/43438?v=2&s=460" alt=""/>
-            <figcaption>
-              <h1>Tim Oxley</h1>
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat
-                non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-              </p>
-            </figcaption>
-          </figure>
-        </li>
-        <li>
-          <figure class="cf">
-            <img class="mentor-thumb" src="https://avatars0.githubusercontent.com/u/495647?v=2&s=460" alt=""/>
-            <figcaption>
-              <h1>Rod Vagg</h1>
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat
-                non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-              </p>
-            </figcaption>
-          </figure>
-        </li>
-        <li>
-          <figure class="cf">
-            <img class="mentor-thumb" src="https://avatars0.githubusercontent.com/u/231686?v=2&s=460" alt=""/>
-            <figcaption>
-              <h1>Mikola Lysenko</h1>
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat
-                non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-              </p>
-            </figcaption>
-          </figure>
-        </li>
-        <li>
-          <figure class="cf">
-            <img class="mentor-thumb" src="https://avatars2.githubusercontent.com/u/164476?v=2&s=460" alt=""/>
-            <figcaption>
-              <h1>Richard Davey</h1>
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat
-                non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-              </p>
-            </figcaption>
-          </figure>
-        </li>
-        <li>
-          <figure class="cf">
-            <img class="mentor-thumb" src="https://avatars1.githubusercontent.com/u/569817?v=2&s=460" alt=""/>
-            <figcaption>
-              <h1>Hugh Kennedy</h1>
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat
-                non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-              </p>
-            </figcaption>
-          </figure>
-        </li>
-        <li>
-          <figure class="cf">
-            <img class="mentor-thumb" src="https://avatars3.githubusercontent.com/u/192891?v=2&s=460" alt=""/>
-            <figcaption>
-              <h1>Thorsten Lorenz</h1>
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat
-                non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-              </p>
-            </figcaption>
-          </figure>
-        </li>
-      </ul>
+    <section class="promo content">
+      <iframe width="600" height="400" src="//www.youtube.com/embed/4n3UMWHQE-o" frameborder="0" allowfullscreen></iframe>
     </section>
+    <section class="content" id="videos">
+      <h1 class="content-item">Videos from CampJS III (May 2014)</h1>
+      <!--<h3>KoaJS – Johnathan Ong</h3>-->
+      <iframe width="600" height="400" src="//www.youtube.com/embed/bNVcVx8TfPc" frameborder="0" allowfullscreen></iframe>
+      <!--<h3>Quiver.js: A New Server-side Component Architecture – Soares Chen</h3>-->
+      <iframe width="600" height="400" src="//www.youtube.com/embed/jfaF52FBxEg" frameborder="0" allowfullscreen></iframe>
+      <!--<h3>BEM for JS – Vladimir Grinenko</h3>-->
+      <iframe width="600" height="400" src="//www.youtube.com/embed/2r72EjALq2s" frameborder="0" allowfullscreen></iframe>
+      <!--<h3>Interfacing with mobile IOT Nodes – Michael Schloh von Bennewitz</h3>-->
+      <iframe width="600" height="400" src="//www.youtube.com/embed/1BBOz--NBmw" frameborder="0" allowfullscreen></iframe>
+      <!--<h3>WebGL Quickstart with Three.JS – Alex Mackey</h3>-->
+      <iframe width="600" height="400" src="//www.youtube.com/embed/bTWb3qqffHI" frameborder="0" allowfullscreen></iframe>
+      <!--<h3>Make Haste: Fast Track to Functional Thinking – Katie Miller</h3>-->
+      <iframe width="600" height="400" src="//www.youtube.com/embed/o3JMxnnTZ64" frameborder="0" allowfullscreen></iframe>
+      <!--<h3>Normalize.IO: The End of Package Management for the Web – Jonathan Ong</h3>-->
+      <iframe width="600" height="400" src="//www.youtube.com/embed/qILwHnSUEO4" frameborder="0" allowfullscreen></iframe>
+    </section>
+
+  <footer class="content content-item">
+    <a href="/">Home</a> | <a href="/code-of-conduct.html">Code of Conduct</a> | <a href="https://twitter.com/campjsnews">Twitter</a> | <a href="https://plus.google.com/communities/106906604683614333625">G+</a> | <a href="mailto:timo@campjs.com">Contact</a>
+  </footer>
+  <footer class="content content-item">
+    Site crafted using <a href="http://github.com/stackgl">stackgl</a> by <a href="http://hughsk.io/">Hugh Kennedy</a>
+  </footer>
   </div>
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-37242312-1']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+
+    ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
+
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
   <script charset="utf-8" src="bundle.js"></script>
 </body>
 </html>
