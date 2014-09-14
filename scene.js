@@ -43,7 +43,7 @@ var camera = Camera(canvas, {
 camera.center[2] = 40
 quat.rotateX(camera.rotation, camera.rotation, -0.05)
 
-var scales = [0.25, 0.5, 1]
+var scales = [1]
 var ratio  = (RETINA && window.devicePixelRatio) || 1
 if (ratio !== 1) scales.push(ratio)
 
