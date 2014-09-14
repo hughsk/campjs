@@ -14,6 +14,8 @@ TRANSFORMS_PRD= \
 	-t glslify    \
 	-t glslify-optimize
 
+
+
 assets: clean \
 	luts/day.js luts/normal.js luts/night.js luts/sunset.js   \
 	textures/water.js textures/grass.js textures/cardboard.js \
@@ -25,7 +27,7 @@ clean:
 	rm bundle.js; true
 	rm disc.html; true
 
-start: assets
+start: assets style.css
 	npm start glslify-live &
 	(beefy index.js:bundle.js --open -- $(TRANSFORMS_DEV))
 
@@ -39,6 +41,9 @@ disc.html:
 		uglifyjs -cm |\
 		discify >\
 		disc.html)
+
+style.css: index.css
+	myth index.css style.css
 
 ## TODO: investigate synchronous (or at least transparent
 ## and/or bulk) method of inlining and loading texture
