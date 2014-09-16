@@ -51,7 +51,7 @@
     "mouse-position": "^1.0.0",
     "ndarray": "^1.0.15",
     "ndarray-fill": "^1.0.1",
-    "ndpack-image": "git://github.com/hughsk/ndpack-image#fix-orientation",
+    "ndpack-image": "^1.0.4",
     "perlin": "^1.0.0",
     "scrollbar-width": "~1.0.7",
     "tab64": "0.0.1",
