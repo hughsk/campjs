@@ -2,7 +2,7 @@
 // Constants
 //
 var SCROLL_AMOUNT = 0.0015
-var DAY_LENGTH    = 12000
+var DAY_LENGTH    = 8000
 var RETINA        = false
 var CONTROLLABLE  = false
 var FPS_MIN       = 52
