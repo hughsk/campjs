@@ -132,6 +132,8 @@ body {
   -webkit-transform: translate(-50%, -50%) scale(1);
   -ms-transform: translate(-50%, -50%) scale(1);
   transform: translate(-50%, -50%) scale(1);
+  text-decoration: none;
+  color: #e5e4f5;
 }
 
 @media screen and (max-width: 850px) {
