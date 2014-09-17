@@ -21,6 +21,17 @@ setTimeout(function() {
   }, 600)
 }, 500)
 
-if (window.chrome) {
+if (isGood()) {
+  // only load 3Dness if good
   require('./scene')
+}
+
+function isGood() {
+  try {
+    if (!window.WebGLRenderingContext) return false
+    return (!!document.createElement('canvas').getContext("webgl"))
+  } catch(e) {
+    return false
+  }
+  return true
 }
