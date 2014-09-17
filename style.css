@@ -165,7 +165,7 @@ body {
 
 .content-item,
 .mentor-list li {
-  background-color: rgba(255,255,255,0.925);
+  background-color: white;
   margin-bottom: 1.5em;
   border-radius: 4px;
   color: #2E2B25;
