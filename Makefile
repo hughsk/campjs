@@ -28,7 +28,7 @@ clean:
 	rm disc.html; true
 
 start: assets style.css
-	npm start glslify-live &
+	npm explore glslify-live npm start &
 	(beefy index.js:bundle.js --open -- $(TRANSFORMS_DEV))
 
 bundle.js: assets
