@@ -166,11 +166,12 @@ body {
 }
 
 .content-item,
-.mentor-list li {
+.mentor-list > li {
   background-color: white;
   margin-bottom: 1.5em;
   border-radius: 4px;
   color: #2E2B25;
+  padding: 1.5em;
 }
 
 .mentor-list {
@@ -178,14 +179,18 @@ body {
   padding: 0;
 }
 
-.mentor-list li {
-  padding: 1.5em;
-  font-size: 0.8rem;
-}
-
 .mentor-list figure {
   margin: 0;
   padding: 0;
+}
+
+.mentor-list > li,
+.content-item p {
+  font-size: 0.8rem;
+}
+
+.content-item h1 {
+  margin: 0;
 }
 
 .mentor-list figcaption {
@@ -197,16 +202,19 @@ body {
 
 .mentor-thumb {
   float: left;
+  clear: left;
   width: 120px;
   height: 120px;
   margin-right: 1.5em;
+  margin-bottom: 1rem;
 }
 
-.mentor-list h1 {
+.mentor-list h1,
+.content-item h1 {
   margin: 0;
   margin-bottom: 1rem;
   font-size: 1.5em;
-  font-family: 'SHAKAGRAPHICS';
+  font-family: 'SG1212', 'SHAKAGRAPHICS', sans-serif;
   text-transform: uppercase;
   color: #2E2B25;
 }
@@ -253,7 +261,7 @@ a:hover {
   text-decoration: underline;
 }
 
-#videos h1 {
+.content > h1 {
   text-align: center;
   padding: 1em 0;
 }
