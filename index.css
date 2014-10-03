@@ -49,9 +49,9 @@ body, html {
   margin: 0;
   padding: 3em 0;
 }
-
 body {
   font-family: 'Fantasque Sans Mono', 'Fira Sans OT', Helvetica, sans-serif;
+  font-size: 1.2em;
 }
 
 #viewbox {
@@ -172,7 +172,7 @@ body {
 }
 
 .mentor-list > li, .content-item p {
-  font-size: 0.8rem;
+  font-size: 0.9rem;
 }
 
 .content-item h1 {
@@ -197,13 +197,14 @@ body {
 
 .mentor-list h1, .content-item h1 {
   margin: 0;
+  padding-top: 0;
   margin-bottom: 1rem;
-  font-size: 1.5em;
+  font-size: 1.9em;
+  line-height: 1.5em;
   font-family: 'SG1212', 'SHAKAGRAPHICS', sans-serif;
   text-transform: uppercase;
   color: #2E2B25;
 }
-
 
 div.dg.ac {
   z-index: 3;
