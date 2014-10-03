@@ -264,6 +264,13 @@ a:hover {
   text-decoration: underline;
 }
 
+h1 a,
+h2 a,
+h3 a,
+h4 a {
+  text-decoration: none;
+}
+
 .content > h1 {
   text-align: center;
   padding: 1em 0;

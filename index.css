@@ -186,6 +186,10 @@ body {
   color: #45413b;
 }
 
+figure .mentor-thumb {
+  margin-top: 0.3em;
+}
+
 .mentor-thumb {
   float: left;
   clear: left;
@@ -235,6 +239,10 @@ footer.content {
 a, a:hover {
   color: rgb(46,43,37);
   text-decoration: underline;
+}
+
+h1 a, h2 a, h3 a, h4 a {
+  text-decoration: none;
 }
 
 .content > h1 {
